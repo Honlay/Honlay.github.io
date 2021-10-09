@@ -105,8 +105,9 @@ code {
 .sidebar-item {
 	display: block;
 }
+
 #logo{
-	border: 50%;
+	border-radius:100%;
 }
 
 .sidebar ul {
