@@ -1,0 +1,402 @@
+---
+layout: post
+title: [6]数组
+date: 2021-02-09 20:20:23 +0900
+category: C#
+---
+
+
+
+**主要内容**
+
+什么是数组、定义数组、初始化数组、访问数组元素、常用方法及属性、数组的分类、参数数组
+
+## 一.什么是数组
+
+- 数组是从Array类派生的，一组数据类型相同的变量组合
+- 一种空间连续的数据结构
+- 元素通过索引(位置的序号)进行操作
+
+![](/Volumes/Mac Data/PROJECT/LearningCSharp/\Image\Array.png)
+
+### 数组概述
+
+- 数组可以是一维、多维或交错的
+- 数值数组元素的默认值为0，而引用元素的默认值为null
+- 交错数组是数组的数组，因此其元素是引用类型并初始化为null
+- 数组的索引从0开始
+- 数组元素可以是任何类型，包括数组类型
+
+
+
+## 二.定义数组
+
+**语法**
+
+- 声明数组
+
+  ```c#
+  数据类型[] 数组名;
+  ```
+
+- 初始化数组
+
+  ```c#
+  数组名 = new 数据类型[元素总数];
+  ```
+
+- 初始化的元素类型与声明时的类型必须相同
+
+## 三.初始化数组
+
+数组初始化后，内存中存储该数据类型的默认值。
+
+- 整形为0
+- 非整形为0.0
+- char为\0
+- string为null
+- bool为false
+
+### 初始化+赋值
+
+可以在数组初始化时同时对元素进行赋值。
+
+**语法**
+
+```c#
+数据类型[] 数组名 = new 数据类型[]{元素1,元素2,...};
+```
+
+**示例**
+
+```c#
+int[] array = new int[]{1,2,3,4,5};
+```
+
+初始化时[]内也可以填入数组长度，但必须与所赋值的元素总数一致。如
+
+```c#
+double[] array = new double[2]{1.0,2.0};
+```
+
+### 声明+赋值
+
+可以在数组声明时同时对元素进行赋值
+
+**语法**
+
+```c#
+数据类型[] 数组名 = {元素1,元素2,...}
+```
+
+**示例**
+
+```c#
+int[] array = {1,2,3,4,5}
+```
+
+元素个数即为数组长度。
+
+程序员可以省略初始化，但编译器内部仍然会"new数据类型[]".
+
+不支持以下写法：
+
+```c#
+double[] array;
+arrat = {1.0,2.0}
+```
+
+
+
+## 四.访问数组元素
+
+### 通过索引访问
+
+可以通过数组的索引进行读写操作
+
+**语法**
+
+```cc
+数组名[索引]
+```
+
+**示例**
+
+```c#
+string array = new string[]{"a","b","c"};
+Console.WriteLine(array[0]); // --> 获取数组第一个元素
+Console.WriteLine(array[2]); // --> 获取数组第三个元素
+```
+
+### 通过for遍历
+
+- 遍历：按照某种顺序访问每一个元素
+
+- for循环遍历数组元素，正在输出到控制台中：
+
+  ```c#
+  string array = new string[]{"a","b","c"};
+  for(int i=0;i<array.Length;i++)
+  {
+      Console.WriteLine(array[i]);
+  }
+  ```
+
+
+
+### 通过foreach遍历
+
+- foreach是一种更简单明了的读取数组元素的语句。
+- 局限性
+  - 只能读取全部元素(语句本身)
+  - 不能修改元素
+  - 只能遍历实现Ienumerable接口的集合对象
+
+### 练习
+
+在控制台中录入学生成绩
+
+要求：成绩范围0-100之间
+
+```c#
+private static float[] EnterScore()
+{
+    Console.WriteLine("请输入学生总数:");
+    int count = int.Parse(Console.ReadLine());
+    float[] Scores = new float[count];
+
+    for (int i = 0; i < Scores.Length;)
+    {
+        Console.WriteLine($"请输入第{i + 1}个学生成绩:");
+        float score = float.Parse(Console.ReadLine());
+        if (score >= 0f && score <= 100f)
+        {
+            Scores[i] = score;
+            i++;
+        }
+        else
+            Console.WriteLine("成绩有误！");
+
+    }
+    return Scores;
+
+}
+```
+
+
+
+## 五.常用方法及属性
+
+**知识点**
+
+```c#
+//object 万类之祖，可以赋值任何类型的数据
+object o = true;
+//Array数组的基类
+Array array = new int[1];
+//推断(隐式)类型：根据数据推断数据类型
+var v="a";
+```
+
+**数组长度**
+
+```c#
+数组名.Length;
+```
+
+**清除元素值** - 将数组中的元素恢复默认值
+
+```c#
+Array.Clear();
+```
+
+**复制元素**
+
+```c#
+Array.Copy();
+数组名.CopyTo();
+```
+
+**克隆**
+
+```c#
+数组名.Clone();
+```
+
+**查找元素**
+
+```c#
+//查找数组中元素的索引
+//可以判断数组中是否存在某个元素
+Array.IndexOf();
+Array.LastIndexOf();
+```
+
+**排序**
+
+```c#
+Array.Sort();
+```
+
+**反转**
+
+```c#
+Array.Reverse();
+```
+
+### 冒泡排序
+
+```c#
+//冒泡排序
+//2 8 6 1
+//第一轮：1 8 6 2 (3次) 第一个位置 与后面元素进行比较，满足条件则交换
+//第二轮：1 2 8 6 (2次) 第二个位置 与后面元素进行比较，满足条件则交换
+//第三轮：1 2 6 8 (1次) 第三个位置 与后面元素进行比较，满足条件则交换
+private static int[] OrderBy(int[] array)
+{
+
+    for (int r = 0; r < array.Length - 1; r++)
+    {
+        for (int i = r + 1; i < array.Length; i++)
+        {
+            if (array[r] > array[i])
+            {
+                //交换
+                int temp = array[i];
+                array[i] = array[r];
+                array[r] = temp;
+
+            }
+        }
+    }
+
+    return array;
+}
+```
+
+### 选择排序 
+
+替换次数比冒泡排序少
+
+```c#
+private static int[] OrderBy(int[] array)
+{
+
+    for (int r = 0; r < array.Length - 1; r++)
+    {
+        int minIndex = r;
+        for (int i = r + 1; i < array.Length; i++)
+        {
+            if (array[minIndex] > array[i])
+            {
+                minIndex = i;
+            }
+
+        }
+        if (minIndex != r)
+        {
+            //交换
+            int temp = array[r];
+            array[r] = array[minIndex];
+            array[minIndex] = temp;
+        }
+
+    }
+
+    return array;
+}
+```
+
+
+
+
+
+## 六.数组的分类
+
+数组分为：一维数组、多维数组和交错数组
+
+#### 多维数组
+
+数组可以具有多个维度，例如，下面声明创建一个四行两列的二维数组
+
+```c#
+int[,] array = new int[4,2]
+```
+
+声明一个三维数组
+
+```c#
+int[,,] array = new int[4,2,3]
+```
+
+#### 交错数组
+
+交错数组是元素为数组的数组。交错数组元素的维度和大小可以不同。交错数组有时称为“数组的数组”
+
+```c#
+int[][] array = new int[3][];
+```
+
+必须初始化array的元素后才可以使用它
+
+```c#
+array[0] = new int[5];
+array[1] = new int[4];
+array[2] = new int[2];    
+```
+
+每个元素都是一个一维整形数组，第一个元素是由5个整形数组组成，第二个元素是由4个整形数组组成，而第三个元素是由2个整形数组组成。
+
+```c#
+array[0] = new int[]{1,2,3,4,5};
+array[1] = new int[]{1,2,3,4};
+array[2] = new int[]{1,2};
+```
+
+声明数组时，将其初始化
+
+```c#
+int[][] array = new int[][]
+{
+    new int[]{1,2,3,4,5},
+    new int[]{0,2,4,6},
+    new int[]{11,12}   
+};
+```
+
+访问元素
+
+```c#
+array[1][0]=0;
+```
+
+
+
+## 七.参数数组
+
+- 在方法形参中通过关键字params定义
+- 方法调用者可以传递数组、也可以传递一组数据类型相同的变量，甚至可以不传递参数
+
+**注意**
+
+- 参数数组必须在形参列表中的最后一位。
+- 只能在一维数组上使用params关键字
+- WriteLine中使用占位符，就是通过参数数组实现的。
+
+```c#
+static void Main()
+{
+    int s = Add(1, 2, 3);
+}
+//数字相加求和的方法
+private static int Add(params int[] arr)
+{
+    int sum = 0;
+    for (int i = 0; i < arr.Length; i++)
+    {
+        sum += arr[i];
+    }
+    return sum;
+}
+```
+
