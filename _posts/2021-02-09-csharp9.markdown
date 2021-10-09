@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [9] 结构 struct
+title:【C#基础9】结构 struct
 date: 2021-02-09 20:20:23 +0900
 category: C#
 ---

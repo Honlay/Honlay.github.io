@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [8] 类和对象
+title:【C#基础8】类和对象
 date: 2021-02-09 20:20:23 +0900
 category: C#
 ---

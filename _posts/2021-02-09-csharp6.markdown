@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [6]数组
+title:【C#基础6】数组
 date: 2021-02-09 20:20:23 +0900
 category: C#
 ---
