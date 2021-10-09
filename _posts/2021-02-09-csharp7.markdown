@@ -79,7 +79,7 @@ graph LR
 声明在栈中，数据存储在堆中，栈中存储该数据的引用
 
 ```c#
-![局部变量1](Image/局部变量1.png)![局部变量1](Image/局部变量1.png)using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -104,7 +104,7 @@ namespace Day6
 }
 ```
 
-![](/Volumes/Mac Data/PROJECT/LearningCSharp/image/局部变量1.png)
+![](/public/img/局部变量1.png)
 
 ```c#
 static void Main()
@@ -126,7 +126,7 @@ static void Main()
 
 ```
 
-![](/Volumes/Mac Data/PROJECT/LearningCSharp/image/局部变量2.png)
+![](/public/img/局部变量2.png)
 
 
 
