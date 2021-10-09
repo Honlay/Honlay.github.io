@@ -105,6 +105,9 @@ code {
 .sidebar-item {
 	display: block;
 }
+#logo{
+	border: 50%;
+}
 
 .sidebar ul {
 	list-style-type: none;
