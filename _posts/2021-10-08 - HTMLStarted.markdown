@@ -1,8 +1,8 @@
 ---
 layout: post
 title: HTML快速入门
-date: 2020-01-02 19:20:23 +0900
-category: sample
+date: 2021-10-08 19:20:23 +0900
+category: Web前端
 ---
 ## 1.HTML简介
 
