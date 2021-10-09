@@ -1,6 +1,6 @@
 ---
 layout: post
-title:C#基础1-C#和.NET简介
+title:C#基础1_C#和.NET简介
 date: 2021-02-09 01:20:23 +0900
 category: C# 
 ---
