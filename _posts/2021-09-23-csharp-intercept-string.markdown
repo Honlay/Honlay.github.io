@@ -2,7 +2,7 @@
 layout: post
 title: C#常用截取字符串方法
 date: 2021-9-23 19:20:23 +0900
-category: Unity
+category: C#
 ---
 ```c#
 string str ="123abc456";
