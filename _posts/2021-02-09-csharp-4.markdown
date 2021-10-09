@@ -1,0 +1,388 @@
+---
+layout: post
+title: 【C#基础4】C# 语句
+date: 2021-02-09 04:20:23 +0900
+category: C#
+---
+
+
+
+C#中的语句有选择语句、循环语句和跳转语句
+
+## 一.选择语句
+
+选择语句又分为if else语句和switch case语句
+
+### 1.if else语句
+
+判断结构要求程序员指定一个或多个要评估或测试的条件，以及条件为真时要执行的语句（必需的）和条件为假时要执行的语句（可选的。
+
+C#提供了以下类型的判断语句，if语句，if else语句 else if语句
+
+if else 语法：1.执行语句0；2.判断条件：若为true,则执行语句1；若为false,则执行语句2; 3.执行语句3
+
+```c#
+语句0；
+if( bool表达式)  //如果（条件）
+{
+    语句1;
+}
+eles         //否则
+{
+    语句2；
+}
+语句3；
+```
+
+
+
+else if 语句:判断条件1：若为true,则执行语句0；若为false,再判断条件2：若为true，则执行语句1；若为false，则执行语句2；
+
+```c#
+if (条件1)
+{
+	语句0；
+}
+else if (条件2)
+{
+	语句1；
+}
+else
+{
+	语句2；
+}
+```
+
+
+
+**注意事项**
+
+- else可有可无。
+- 每个else总属于前面最近的if语句
+- 单行语句可以不写大括号
+
+### 2. switch case语句
+
+计算表达式并对照多个常数值分支到不同的代码块
+
+**语法:**
+
+```c#
+switch(表达式)
+{
+	case 常数值1：
+	//若干行语句
+	break;
+	case 常数值2:
+	//若干行语句
+	break;
+    default:
+    //若干行语句
+    break;
+}
+```
+
+**注意事项**
+
+- switch()中的变量可以是整形、string、bool、char、枚举或相应可以为null的类型，必须有一个定制。
+- 每个case标签后是常量表达式的值，不必连续也不必按特定顺序排列，但不能相同，否则会出现错误。
+- default标签可选，意思是其余的结果
+- break语句的作用是在case与case之间中断程序。
+
+**switch...case与if...else区别：**
+
+- 都可以用来实现多路分支
+- if...else实现两路、三路分支比较方便
+- switch...case实现三路以上分支结构更清晰，代码可读性更强。
+- 因为case语句后边必须是定制，所以switch...case不适合做范围的判断
+
+**练习**
+
+用户在控制台中录入一个年份和月份，输出该月份的天数
+
+```c#
+using System;
+
+namespace Practise
+{
+    class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("请输入一个年份：");
+            int year = int.Parse(Console.ReadLine());
+            Console.WriteLine("请输入一个月份:");
+            int month = int.Parse(Console.ReadLine());
+
+            if (month >= 1 && month <= 12)
+            {
+                int days;
+                switch (month)
+                {
+                    case 2:
+                        //if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+                        //{
+                        //    days = 29;
+                        //}
+                        //else
+                        //{
+                        //    days = 28;
+                        //}
+                        //三元表达式
+                        days = year % 4 == 0 && year % 100 != 0 || year % 400 == 0 ? 29 : 28;
+                        break;
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12:
+                        days = 31;
+                        break;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        days = 30;
+                        break;
+                    default:
+                        days = 0;
+                        break;
+                }
+
+                Console.WriteLine($"{year}年的{month}有{days}天");
+            }
+            else
+            {
+                Console.WriteLine("月份输入错误");
+            }
+        }
+    }
+    
+}
+
+```
+
+### 3. 代码块和作用域
+
+-  在程序中可以使用一对大括号框住一部分代码，被框住的代码区域称为代码块
+-  作用域可以理解为起作用的范围
+-  局部变量作用域：从声明开始，到所属}结束。
+
+## 二.循环语句
+
+### 1.循环结构
+
+- 重复执行同一组语句，直到满足指定的条件。
+
+- 循环的要素
+
+  - 循环体（需要重复执行的语句）
+  - 循环条件（重复执行的条件）
+
+
+### 2.跳转语句
+
+- 用于将控制转移给另一端代码
+- 包括continue语句、break语句和return语句。
+
+**continue语句**
+
+- 退出本次循环并执行下次循环
+- 常应用于for循环
+
+**break语句**
+
+- 退出最近的循环体或switch语句
+- 常应用于while循环
+
+
+
+### 3.for循环
+
+一个for循环时一个允许您编写一个执行特定次数的循环的重复控制结构
+
+**语法**
+
+```c#
+for(初始值;循环条件;增减变量)
+{
+    循环体;
+}
+```
+
+- 初始值会首先被执行，且只会执行一次。也可以不在这里写任何语句，只要一个分号出现即可。
+- 接下来会判断循环条件，如果为真，则执行循环体。如果为假，则不执行循环体，且控制流会跳转到紧接着for循环的吓一跳语句。
+- 执行完for循环体后，控制流会跳回到上面的增减变量。该语句允许更新循环控制变量。该语句可以留空，只要在条件后有一个分号出现即可。
+- 条件再次被判断。如果为真，则执行循环，这个过程会不断重复（循环体，然后增减变量，判断条件）。在条件变为假时，for循环终止。
+
+示例：1到100之间的和
+
+```c#
+int sum =0;
+for(int i=1;i<=100;i++)
+{
+    sum+=i;
+}
+Console.WriteLine(sum);
+```
+
+continue:跳出本次循环，继续下次循环
+
+```c#
+static void Main()
+{
+    int sum = 0;
+    for (int i = 1; i <= 100; i++)
+    {
+        if (i % 3 != 0)
+        {
+            continue; //跳出本次循环，继续下次循环
+        }
+        sum += i;
+    }
+    Console.WriteLine(sum);
+}
+```
+
+### 4.foreach循环
+
+C#也支持foreach循环，使用foreach循环可以迭代数组或者一个集合对象
+
+以下实例有三个部分
+
+- 通过foreach循环输出整形数组中的元素
+- 通过for循环输出整形数组中的元素。
+- foreach循环设置数组元素的计算器。
+
+```c#
+class ForEachTest
+{
+    static void Main(string[] args)
+    {
+        int[] fibarray = new int[] { 0, 1, 1, 2, 3, 5, 8, 13 };
+        foreach (int element in fibarray)
+        {
+            System.Console.WriteLine(element);
+        }
+        System.Console.WriteLine();
+
+
+        // 类似 foreach 循环
+        for (int i = 0; i < fibarray.Length; i++)
+        {
+            System.Console.WriteLine(fibarray[i]);
+        }
+        System.Console.WriteLine();
+
+
+        // 设置集合中元素的计算器
+        int count = 0;
+        foreach (int element in fibarray)
+        {
+            count += 1;
+            System.Console.WriteLine("Element #{0}: {1}", count, element);
+        }
+        System.Console.WriteLine("Number of elements in the array: {0}", count);
+    }
+}
+```
+
+
+
+### 5.while循环
+
+先判断条件，只要给定的条件为真，C#中的while循环语句会重复执行一个目标语句。
+
+**语法**
+
+```c#
+while(条件)
+{
+	满足条件执行循环体;
+}
+```
+
+**练习**
+
+猜数字游戏，程序产生1-100间的随机整数，在控制台中，让用户重复猜测
+
+```c#
+static void Main()
+{
+    Random random = new Random();
+    int number = random.Next(1, 101);
+    int input = 0;
+    int count = 0;
+    while(true)
+    {
+        count++;
+        Console.WriteLine("请输入：");
+        input = int.Parse(Console.ReadLine());
+
+        if (input > number)
+            Console.WriteLine("大了");
+
+        else if (input < number)
+            Console.WriteLine("小了");
+        else
+        {
+           Console.WriteLine($"终于猜对了，一共猜了{count}次"); 
+           break;//退出循环体
+        }
+            
+
+}
+```
+
+
+
+### 6.do...while循环
+
+先做再判断条件。do...while循环实在循环的尾部检查它的条件。
+
+do...while循环于while循环类似，但是do...while循环会确保至少执行一次循环。
+
+**语法:**
+
+```c#
+do
+{
+    
+}while(条件)
+
+```
+
+**练习**
+
+猜数字游戏，程序产生1-100间的随机整数，在控制台中，让用户重复猜测
+
+```c#
+static void Main()
+{
+    Random random = new Random();
+    int number = random.Next(1, 101);
+    int input = 0;
+    int count = 0;
+    do
+    {
+        count++;
+        Console.WriteLine("请输入：");
+        input = int.Parse(Console.ReadLine());
+
+        if (input > number)
+            Console.WriteLine("大了");
+
+        else if (input < number)
+            Console.WriteLine("小了");
+        else
+            Console.WriteLine($"终于猜对了，一共猜了{count}次");
+
+
+    }
+    while (input != number);//输入错误
+
+}
+```
+
