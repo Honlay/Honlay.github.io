@@ -613,7 +613,9 @@ bytearray.translate(table[, delete])
 
 - table -- 翻译表，翻译表是通过 maketrans() 方法转换而来。
 - deletechars -- 字符串中要过滤的字符列表。
-**示例**
+
+示例
+
 ```python
 intab = "aeiou"
 outtab = "12345"
@@ -625,6 +627,7 @@ print (str.translate(trantab))
 ```
 
 #### 分割字符串
+
 **37.partition()** 
 
 **描述**:根据指定的分隔符(sep)将字符串进行分割。从字符串左边开始索引分隔符sep,索引到则停止索引。
@@ -637,6 +640,7 @@ print (str.translate(trantab))
  (head, sep, tail) 返回一个三元元组，head:分隔符sep前的字符串，sep:分隔符本身，tail:分隔符sep后的字符串。如果字符串包含指定的分隔符sep，则返回一个三元元组，第一个为分隔符sep左边的子字符串，第二个为分隔符sep本身，第三个为分隔符sep右边的子字符串。如果字符串不包含指定的分隔符sep,仍然返回一个三元元组，第一个元素为字符串本身，第二第三个元素为空字符串
 
 **示例**
+
 ```python
 s = 'https://www.xrloft.com'
 print(s.partition('://')) # 返回 ('https', '://', 'www.xrloft.com')
