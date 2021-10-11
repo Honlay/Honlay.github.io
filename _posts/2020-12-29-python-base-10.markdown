@@ -5,6 +5,87 @@ date: 2020-12-29 10:20:23 +0800
 category: Python 
 ---
 
+Python条件语句是通过一条或多条语句的执行结果(True或False)来决定执行的代码块。
+可以通过下图来简单了解条件语句的执行过程
+
+![](public\img\tiaojianyuju.jpg)
+
+Python程序语言指定任何非0和非空(null)值为true,0或者null为false
+Python编程中if语句用于控制程序的执行，基本形式为：
+
+```python
+if 条件判断:
+    执行语句
+else:
+    执行语句
+```
+其中判断条件成立时，则执行后面的语句，执行内容可以多行，以缩进来区分表示同一范围。
+else为可选语句，当需要在条件不成立时执行内容可以执行相关语句，具体例子如下：
+```python
+name ="扫地僧"
+if name == '达摩祖师':
+    print('武林第一人物果然是达摩祖师')
+else:
+    print(f"武林第一人物难道是{name}")
+
+# 输出结果为：
+武林第一人物难道是扫地僧
+```
+
+if语句的判断可以用>(大于)、<(小于)、>=大于等于()、<=(小于等于)来表示其关系
+
+当判断条件为多个值时，可以使用以下形式：
+```python
+if  判断条件1:
+	执行语句1...
+elif 判断条件2:
+	执行语句2...
+elif 判断条件3:
+	执行语句3...
+else 判断条件4:
+	执行语句4...
+```
+实例如下：
+```python
+score =79
+if 90 < score <=100:
+    print('A')
+elif 80 < score <=90:
+    print('B')
+elif 70 <score<=80:
+    print('C')
+else:
+    print('D')
+
+# 输出结果为  
+C
+```
+由于Python并不支持switch语句，所以多个条件判断时只能用elif来实现，如果需多个条件同时判断，可以使用or(或)、and(和)
+```python
+num = 9
+if num>=0 and num <= 10:  #判断值是否在0-10之间
+    print(num)
+else:
+    print('Hello Python')
+# 输出结果为
+9
+
+num = 10
+if num < 0 or num > 10:    # 判断值是否在小于0或大于10
+    print 'hello'
+else:
+    print 'undefine'
+# 输出结果: undefine
+ 
+num = 8
+# 判断值是否在0~5或者10~15之间
+if (num >= 0 and num <= 5) or (num >= 10 and num <= 15):    
+    print 'hello'
+else:
+    print 'undefine'
+# 输出结果: undefine
+```
+当if有多个条件时可使用括号来区分判断的先后顺序，括号中的判断优先执行，此外and和or的优先级低于>（大于）、<（小于）等判断符号，即大于和小于在没有括号的情况下会比与或要优先判断。
 
 
-完善中...
+
