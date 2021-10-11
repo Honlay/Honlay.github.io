@@ -5,5 +5,231 @@ date: 2020-12-29 12:20:23 +0800
 category: Python 
 ---
 
-完善中...
 
+## 什么是函数
+函数是组织好的，可重复使用的，用来实现单一或关联功能的代码块。
+
+## 定义函数
+
+- 函数以def关键字开头，后接函数标识符名称和圆括号()
+- 任何传入参数和自变量必须放在圆括号中间，圆括号之间可以用于定义参数。
+- 函数的第一行语句可以选择性地使用文档字符串—用于存放函数说明。
+- 函数内容以冒号 **:** 起始，并且缩进。
+- **return [表达式]** 结束函数，选择性地返回一个值给调用方，不带表达式的 return 相当于返回 None。
+
+```python
+def add (x, y):
+    r= x+y
+    return r
+```
+## 调用函数
+- 按照位置提供参数
+- 指明参数名称(参数可以不按照位置)
+- 设置参数默认值(默认值需放到最后)
+```python
+def add (x, y):
+    r= x+y
+    return r
+
+# 按照位置提供参数
+a = add(2,3)
+print(a)  # 返回 5
+
+# 指明参数名称
+a= add(x=2,y=3)
+print(a) # 返回 5
+
+# 设置默认参数
+def add_1(x,y=3):
+    r = x+y
+    return r
+
+c = add_1(2)
+print( c)  # 返回5
+
+c= add_1(x=2,y=4)
+print(c) # 返回6
+
+```
+**实例**
+
+定义一个函数实现字符串大小写转换
+```python
+# pYTHON ==> Python
+def convert (s):
+    lst=[i.upper() if i== i.lower() else i.lower() for i in s]
+    return ''.join(lst)
+
+print(convert('pYTHON'))
+
+# 返回 Python
+```
+
+## return语句
+return语句在函数中的作用是中断当前函数并跳出函数体，然后把值返回到函数调用的位置
+
+return不仅仅能返回一个值，还能返回多个值
+```python
+def my_fun():
+    return 1,2,3
+r = my_fun()
+print(r)
+#返回 (1, 2, 3)
+
+a,b,c = my_fun()
+print(a)   # 返回 1
+print(b)   # 返回 2
+print(c)   # 返回 3
+
+```
+
+## 文档字符串
+定义函数时，可以在函数头后面添加由三个引号(单引号或双引号)括起来的文档字符串(docstring)，用于说明这个函数的功能。docstring会作为函数对象的一个属性"__doc__"被使用。
+```python
+def add (x,y):
+    """
+    这是一个加法
+    """
+    return x+y
+
+print(add(2,3))
+print(add.__doc__)
+
+# 返回
+5
+
+    这是一个加法
+
+```
+文档字符串有助于他人理解函数的功能，Python的每个对象都有一个"__doc__"属性，除直接输出一个对象的"__doc__"属性外，Python的内置函数也同样可以输出文档字符串的内容。许多文档自动化工具可以从程序代码中提取文档字符串，用于进行处理、打印、显示文档等操作。
+
+## 参数收集(不定长参数)
+你可能需要一个函数能处理比当初声明时更多的参数。这些参数叫做不定长参数。
+- 一个'*'的作用
+- 两个'*'的作用
+
+```python
+def fun(x,*args):
+    print('x=',x)
+    print('args= ',args)
+a = fun(1,2,3,4,5)
+print(a)
+# 返回
+x= 1
+args=  (2, 3, 4, 5)
+None
+
+def bar(x,**kwargs):
+    print('x=',x)
+    print('kwargs=',kwargs)
+a = bar(1,a=2,b=3,c=4)
+print(a)
+# 返回
+x= 1
+kwargs= {'a': 2, 'b': 3, 'c': 4}
+None
+```
+### 练习
+假设有数据武林人物对应的绝学 heroes={'达摩祖师':'易筋经','逍遥子':'北冥神功','乔峰':'降龙十八掌','段誉':'六脉神剑'}，编写函数，实现对输入人物及其绝学的查询。例如向函数提供达摩祖师='易筋经',段誉='北冥神功'等参数，查询这些是否为此数据的数值
+
+```python
+def find_k(dict_hero, **kwards):
+    r = {}
+    for k, v in kwards.items():
+        if dict_hero.get(k) == v:
+            r[k] = v
+            print(f'{k}的绝学是{v}')
+        else:
+            print(f"{k}的绝学不是{v}")
+    return r
+
+
+heroes = {'达摩祖师': '易筋经', '逍遥子': '北冥神功', '乔峰': '降龙十八掌', '段誉': '六脉神剑'}
+a = find_k(heroes, 达摩祖师='易筋经', 段誉='北冥神功')
+print(f'所以绝学正确的是{a}')
+```
+```text
+# 返回
+达摩祖师的绝学是易筋经
+段誉的绝学不是北冥神功
+所以绝学正确的是{'达摩祖师': '易筋经'}
+```
+## 全局变量和局部变量
+### 全局变量
+函数外部(或称全局作用域)声明的变量，称为全局变量(global variable)，这意味着全局变量在函数内部或外部都可以使用。例如：
+```python
+x = 'global'
+def fun():
+    print('x inside:',x)
+
+fun()
+print( 'x outside:',x)
+```
+```text
+# 输出结果
+x inside: global
+x outside: global
+```
+如果试图在一个函数里修改一个全局变量。例如：
+```python
+x='global'
+def fun():
+    x=x*2
+    print(x)
+fun()
+```
+则将抛出异常(提示："局部变量在赋值前被引用"的错误)：
+```text
+UnboundLocalError: local variable 'x' referenced before assignment
+```
+由上可知，函数fun()内部使用形如"x="的语句就相当于定义了局部变量(local variable)，因此，这个函数里的x就不是全局变量的那个x了，而等号右侧的"x*2"试图使用这个还未定义的局部变量x，所以产生了上述错误。
+
+那么，如何在函数内部对全局变量修改呢？方法是使用关键字global声明x是一个全局变量，例如：
+```python
+x = 'global'
+
+
+def fun():
+    global x
+    x = x * 2
+    print(x)
+
+
+fun()
+```
+```text
+# 返回
+globalglobal
+```
+
+### 局部变量
+可以在函数内部定义一个变量，这个变量只属于该函数，外部无法使用这个变量，该变量称为局部变量(local variable)。例如：
+```python
+def fun():
+    y='local'
+
+fun()
+print(y)
+```
+执行后抛出"名字y没有定义"的错误
+
+如果函数内部声明的局部变量和外部变量同名，则内部的局部变量会隐藏全局变量，即在函数内部使用这个名字访问的总是局部变量。
+```python
+x='乔峰'
+def fun():
+    x='段誉'
+    print('local x:',x)
+
+fun()
+print('global x:',x)
+
+```
+```text
+# 返回
+local x: 段誉
+global x: 乔峰
+```
+#### 小结
+- 函数内部可访问但不能直接修改全局变量，必须使用关键字global声明才能修改全局变量
+- 局部变量和全局变量同名时，在函数内部通过这个名字访问的都是局部变量，除非用global声明为全局变量。
+- 函数外部不能访问局部变量
