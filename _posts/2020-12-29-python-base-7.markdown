@@ -57,8 +57,10 @@ for k,v in heroes.items():
 hero = {'name':'乔峰','age':'35','gender':'男',('kungfu1','kunfgu2'):('降龙十八掌','打狗棒法')}
 ```
 
-##1.访问字典的数据
+## 1.访问字典的数据
+
 把相应的键放入方括号中：
+
 ```python
 >>> hero = {'name':'乔峰','age':'35','gender':'男','kungfu':'降龙十八掌'}
 >>> hero['name']
