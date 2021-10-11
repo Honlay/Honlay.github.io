@@ -790,7 +790,38 @@ index.css
 
 ```
 
-#### 3.5.3 字符间距 letter-spaceing
+#### 3.5.4 首行缩进 text-indent
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				
+				font-family: 华文黑体,serif;
+				font-size: 20px;
+				font-weight: bold;
+				color: red;
+				text-align: left;
+				line-height: 50px;
+				text-indent: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			字体可以定义多个，使用","隔开，确保当字体不存在的时候直接使用下一个。字体可以定义多个，使用","隔开，确保当字体不存在的时候直接使用下一个。
+		</div>
+	</body>
+</html>
+```
+
+
+
+#### 3.5.4 字符间距 letter-spaceing
 
 ```html
 <!DOCTYPE html>
