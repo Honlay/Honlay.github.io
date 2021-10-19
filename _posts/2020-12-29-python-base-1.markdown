@@ -83,8 +83,6 @@ is , is not
 ```
 
 
-
-```text
-<iframe src="/public/video/1横（趣读识写一条龙笔画三字谣）.mp4" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-```
-
+<video id="video" controls="" preload="none" poster="封面">
+      <source id="mp4" src="/public/video/1横（趣读识写一条龙笔画三字谣）.mp4" type="video/mp4">
+</videos>
